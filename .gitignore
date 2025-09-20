@@ -1,3 +1,4 @@
 # Ignore tmp
 tmp/
-exercisediary.exe
+./exercisediary.exe
+*.exe

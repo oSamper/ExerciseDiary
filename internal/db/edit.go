@@ -20,11 +20,9 @@ func Create(path string) {
 		"IMAGE"		TEXT,
 		"COLOR"		TEXT,
 		"WEIGHT" 	INTEGER,
-		"REPS" 		INTEGER,
-		"SERIES" 	INTEGER
+		"REPS" 		INTEGER
 	);`
 	exec(path, sqlStatement)
-
 	// Add Series column to exercises if not exists
 	if !columnExists(path, "exercises", "SERIES") {
 		sqlStatement = `ALTER TABLE exercises ADD COLUMN SERIES INTEGER;`
@@ -37,10 +35,15 @@ func Create(path string) {
 		"NAME"		TEXT,
 		"COLOR"		TEXT,
 		"WEIGHT"	INTEGER,
-		"REPS"		INTEGER,
-		"SERIES"	INTEGER
+		"REPS"		INTEGER
 	);`
+
 	exec(path, sqlStatement)
+
+	if !columnExists(path, "sets", "SERIES") {
+		sqlStatement = `ALTER TABLE sets ADD COLUMN SERIES INTEGER;`
+		exec(path, sqlStatement)
+	}
 
 	sqlStatement = `CREATE TABLE IF NOT EXISTS weight (
 		"ID"		INTEGER PRIMARY KEY,
