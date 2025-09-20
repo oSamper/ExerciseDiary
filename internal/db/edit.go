@@ -139,7 +139,12 @@ func columnExists(path, table, column string) bool {
 	mu.Lock()
 	dbx := connect(path)
 	var cols []struct {
-		Name string `db:"name"`
+		Cid        int    `db:"cid"`
+		Name       string `db:"name"`
+		Type       string `db:"type"`
+		NotNull    int    `db:"notnull"`
+		DefaultVal string `db:"dflt_value"`
+		Pk         int    `db:"pk"`
 	}
 	err := dbx.Select(&cols, fmt.Sprintf("PRAGMA table_info('%s')", table))
 	mu.Unlock()
