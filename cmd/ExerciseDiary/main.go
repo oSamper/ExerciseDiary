@@ -8,7 +8,7 @@ import (
 	"github.com/aceberg/ExerciseDiary/internal/web"
 )
 
-const dirPath = "/data/ExerciseDiary"
+const dirPath = "./data"
 const nodePath = ""
 
 func main() {

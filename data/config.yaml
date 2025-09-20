@@ -1,0 +1,10 @@
+auth: false
+auth_expire: 7d
+auth_password: ""
+auth_user: ""
+color: dark
+heatcolor: '#03a70c'
+host: 0.0.0.0
+pagestep: 10
+port: "8851"
+theme: grass
