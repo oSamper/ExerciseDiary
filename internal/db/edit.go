@@ -18,7 +18,8 @@ func Create(path string) {
 		"IMAGE"		TEXT,
 		"COLOR"		TEXT,
 		"WEIGHT"	INTEGER,
-		"REPS"		INTEGER
+		"REPS"		INTEGER,
+		"SERIES"	INTEGER DEFAULT 1
 	);`
 	exec(path, sqlStatement)
 
@@ -28,7 +29,8 @@ func Create(path string) {
 		"NAME"		TEXT,
 		"COLOR"		TEXT,
 		"WEIGHT"	INTEGER,
-		"REPS"		INTEGER
+		"REPS"		INTEGER,
+		"SERIES"	INTEGER DEFAULT 1
 	);`
 	exec(path, sqlStatement)
 
@@ -40,17 +42,32 @@ func Create(path string) {
 	exec(path, sqlStatement)
 }
 
+// MigrateSeries - add Series column to existing tables if it doesn't exist
+func MigrateSeries(path string) {
+	mu.Lock()
+	dbx := connect(path)
+	defer mu.Unlock()
+
+	// Try to add Series column to exercises table (ignore error if column exists)
+	sqlStatement := `ALTER TABLE exercises ADD COLUMN "SERIES" INTEGER DEFAULT 1;`
+	dbx.Exec(sqlStatement)
+
+	// Try to add Series column to sets table (ignore error if column exists)
+	sqlStatement = `ALTER TABLE sets ADD COLUMN "SERIES" INTEGER DEFAULT 1;`
+	dbx.Exec(sqlStatement)
+}
+
 // InsertEx - insert one exercise into DB
 func InsertEx(path string, ex models.Exercise) {
 
-	sqlStatement := `INSERT INTO exercises (GR, PLACE, NAME, DESCR, IMAGE, COLOR, WEIGHT, REPS) 
-	VALUES ('%s','%s','%s','%s','%s','%s','%v','%d');`
+	sqlStatement := `INSERT INTO exercises (GR, PLACE, NAME, DESCR, IMAGE, COLOR, WEIGHT, REPS, SERIES) 
+	VALUES ('%s','%s','%s','%s','%s','%s','%v','%d','%d');`
 
 	ex.Group = quoteStr(ex.Group)
 	ex.Name = quoteStr(ex.Name)
 	ex.Descr = quoteStr(ex.Descr)
 
-	sqlStatement = fmt.Sprintf(sqlStatement, ex.Group, ex.Place, ex.Name, ex.Descr, ex.Image, ex.Color, ex.Weight, ex.Reps)
+	sqlStatement = fmt.Sprintf(sqlStatement, ex.Group, ex.Place, ex.Name, ex.Descr, ex.Image, ex.Color, ex.Weight, ex.Reps, ex.Series)
 
 	exec(path, sqlStatement)
 }
@@ -58,12 +75,12 @@ func InsertEx(path string, ex models.Exercise) {
 // InsertSet - insert one set into DB
 func InsertSet(path string, ex models.Set) {
 
-	sqlStatement := `INSERT INTO sets (DATE, NAME, COLOR, WEIGHT, REPS) 
-	VALUES ('%s','%s','%s','%v','%d');`
+	sqlStatement := `INSERT INTO sets (DATE, NAME, COLOR, WEIGHT, REPS, SERIES) 
+	VALUES ('%s','%s','%s','%v','%d','%d');`
 
 	ex.Name = quoteStr(ex.Name)
 
-	sqlStatement = fmt.Sprintf(sqlStatement, ex.Date, ex.Name, ex.Color, ex.Weight, ex.Reps)
+	sqlStatement = fmt.Sprintf(sqlStatement, ex.Date, ex.Name, ex.Color, ex.Weight, ex.Reps, ex.Series)
 
 	exec(path, sqlStatement)
 }

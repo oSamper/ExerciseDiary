@@ -31,6 +31,7 @@ func Gui(dirPath, nodePath string) {
 	log.Println("INFO: starting web gui with config", appConfig.ConfPath)
 
 	db.Create(appConfig.DBPath)
+	db.MigrateSeries(appConfig.DBPath)
 
 	address := appConfig.Host + ":" + appConfig.Port
 

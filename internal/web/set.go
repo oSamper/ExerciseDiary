@@ -17,6 +17,7 @@ func setHandler(c *gin.Context) {
 	var formData []models.Set
 	var oneSet models.Set
 	var reps int
+	var series int
 	var weight decimal.Decimal
 
 	_ = c.PostFormMap("sets")
@@ -33,8 +34,10 @@ func setHandler(c *gin.Context) {
 		oneSet.Name = formMap["name"][i]
 		weight, _ = decimal.NewFromString(formMap["weight"][i])
 		reps, _ = strconv.Atoi(formMap["reps"][i])
+		series, _ = strconv.Atoi(formMap["series"][i])
 		oneSet.Weight = weight
 		oneSet.Reps = reps
+		oneSet.Series = series
 
 		formData = append(formData, oneSet)
 	}

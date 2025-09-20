@@ -1,9 +1,9 @@
 var sChart = null;
 var sOffset = 0;
 
-function addSet(i, date, reps, weight) {
+function addSet(i, date, reps, weight, series) {
 
-    html_code = '<tr><td style="opacity: 45%;">'+i+'.</td><td>'+date+'</td><td>'+reps+'</td><td>'+weight+'</td></tr>';
+    html_code = '<tr><td style="opacity: 45%;">'+i+'.</td><td>'+date+'</td><td>'+reps+'</td><td>'+weight+'</td><td>'+series+'</td></tr>';
 
     document.getElementById('stats-table').insertAdjacentHTML('beforeend', html_code);
 };
@@ -11,7 +11,7 @@ function addSet(i, date, reps, weight) {
 
 function setStatsPage(sets, hcolor, off, step) {
     let start = 0, end = 0;
-    let dates = [], ws = [], reps = [], exs = []; 
+    let dates = [], ws = [], reps = [], series = [], exs = []; 
 
     let ex = document.getElementById("ex-value").value;
     for (let i = 0; i < sets.length; i++) {
@@ -44,18 +44,19 @@ function setStatsPage(sets, hcolor, off, step) {
 
 
     for (let i = start ; i < end; i++) {
-        addSet(i+1, exs[i].Date, exs[i].Reps, exs[i].Weight);
+        addSet(i+1, exs[i].Date, exs[i].Reps, exs[i].Weight, exs[i].Series);
 
         dates.push(exs[i].Date);
         reps.push(exs[i].Reps);
         ws.push(exs[i].Weight);
+        series.push(exs[i].Series);
     };
 
-    statsChart('stats-reps', dates, reps, hcolor, true);
+    statsChart('stats-reps', dates, reps, series, hcolor, true);
     weightChart('stats-weight', dates, ws, hcolor, true);
 };
 
-function statsChart(id, dates, ws, wcolor, xticks) {
+function statsChart(id, dates, ws, series, wcolor, xticks) {
     
     const ctx = document.getElementById(id);
 
@@ -69,12 +70,31 @@ function statsChart(id, dates, ws, wcolor, xticks) {
       data: {
         labels: dates,
         datasets: [{
+          label: 'Reps',
           data: ws,
           borderColor: wcolor,
-          borderWidth: 1
+          backgroundColor: wcolor + '80',
+          borderWidth: 1,
+          yAxisID: 'y'
+        }, {
+          label: 'Series',
+          type: 'line',
+          data: series,
+          borderColor: '#ff6b6b',
+          backgroundColor: '#ff6b6b',
+          borderWidth: 2,
+          pointRadius: 4,
+          pointHoverRadius: 6,
+          fill: false,
+          yAxisID: 'y1'
         }]
       },
       options: {
+        responsive: true,
+        interaction: {
+          mode: 'index',
+          intersect: false,
+        },
         scales: {
           x: {
             ticks: {
@@ -82,12 +102,33 @@ function statsChart(id, dates, ws, wcolor, xticks) {
             },
           },
           y: {
-            beginAtZero: false
+            type: 'linear',
+            display: true,
+            position: 'left',
+            beginAtZero: false,
+            title: {
+              display: true,
+              text: 'Reps'
+            }
+          },
+          y1: {
+            type: 'linear',
+            display: true,
+            position: 'right',
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Series'
+            },
+            grid: {
+              drawOnChartArea: false,
+            },
           }
         },
         plugins:{
             legend: {
-             display: false
+             display: true,
+             position: 'top'
             }
         }
       }
