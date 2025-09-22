@@ -1,8 +1,21 @@
 var id = 0;
 var today = null;
 
-function addExercise(name, weight, reps, series) {
+function addExercise(name, weight, reps, series, rate) {
     // console.log('NAME =', name);
+
+    // Default rate to 2 (Justo) if not provided
+    if (rate === undefined || rate === null) {
+        rate = 2;
+    }
+
+    // Rate configuration
+    const rateConfig = {
+        1: { icon: '✗', class: 'rate-1' },
+        2: { icon: '○', class: 'rate-2' },
+        3: { icon: '✓', class: 'rate-3' },
+        4: { icon: '✓✓', class: 'rate-4' }
+    };
 
     id = id + 1;
     html_to_insert=`<tr id="${id}">
@@ -14,6 +27,11 @@ function addExercise(name, weight, reps, series) {
         <input name="reps" type="number" min="0" class="form-control" value="${reps}">
     </td><td>
         <input name="series" type="number" min="1" class="form-control" value="${series}">
+    </td><td>
+        <div class="rate-container" onclick="handleRateClick(event, this)">
+            <span class="rate-icon-display rate-icon ${rateConfig[rate].class}">${rateConfig[rate].icon}</span>
+            <input name="rate" type="hidden" value="${rate}">
+        </div>
     </td><td>
         <button class="btn del-set-button" type="button" title="Delete" onclick="delExercise(${id})">
             <i class="bi bi-x-square"></i>
@@ -33,7 +51,7 @@ function setFormContent(sets, date) {
         let len = sets.length;
         for (let i = 0 ; i < len; i++) {
             if (sets[i].Date == date) {
-                addExercise(sets[i].Name, sets[i].Weight, sets[i].Reps, sets[i].Series);
+                addExercise(sets[i].Name, sets[i].Weight, sets[i].Reps, sets[i].Series, sets[i].Rate);
             }
         }
     }
@@ -87,7 +105,7 @@ function addAllGroup(exs, gr) {
         let len = exs.length;
         for (let i = 0 ; i < len; i++) {
             if (exs[i].Group == gr) {
-                addExercise(exs[i].Name, exs[i].Weight, exs[i].Reps, exs[i].Series);
+                addExercise(exs[i].Name, exs[i].Weight, exs[i].Reps, exs[i].Series, exs[i].Rate);
             }
         }
     }

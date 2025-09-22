@@ -11,6 +11,8 @@
 - [x] Mobile layout
 - [x] Add exercise group with 1 button
 - [x] Login/Password
+- [x] Add Series field to exercise sets (store and display series count per set)
+- [x] Add Rate field with 4-level selector (Failure, Challenging, Good, Easy) with a mobile-friendly popup
 
 ## IN PROGRESS
 

@@ -53,11 +53,13 @@ func saveExerciseHandler(c *gin.Context) {
 	weight := c.PostForm("weight")
 	reps := c.PostForm("reps")
 	series := c.PostForm("series")
+	rate := c.PostForm("rate")
 
 	oneEx.ID, _ = strconv.Atoi(id)
 	oneEx.Weight, _ = decimal.NewFromString(weight)
 	oneEx.Reps, _ = strconv.Atoi(reps)
 	oneEx.Series, _ = strconv.Atoi(series)
+	oneEx.Rate, _ = strconv.Atoi(rate)
 
 	// log.Println("ONEEX =", oneEx)
 

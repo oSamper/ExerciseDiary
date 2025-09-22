@@ -43,6 +43,10 @@
                     <td><input name="series" type="number" min="1" class="form-control" value="{{ .OneEx.Series }}"></td>
                 </tr>
                 <tr>
+                    <td>Rate (default)</td>
+                    <td><input name="rate" type="number" min="1" max="5" class="form-control" value="{{ .OneEx.Rate }}"></td>
+                </tr>
+                <tr>
                     <td><button type="submit" class="btn btn-primary">Save</button></td>
             </form>
             <form action="/exdel/" method="post">

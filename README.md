@@ -9,13 +9,16 @@
 
 Workout diary with GitHub-style year visualization
 
-- [Quick start](https://github.com/aceberg/exercisediary#quick-start)
-- [Binary](https://github.com/aceberg/exercisediary#binary)
-- [Config](https://github.com/aceberg/exercisediary#config)
-- [Options](https://github.com/aceberg/exercisediary#options)
-- [Local network only](https://github.com/aceberg/exercisediary#local-network-only)
-- [Roadmap](https://github.com/aceberg/ExerciseDiary/blob/main/docs/ROADMAP.md)
-- [Thanks](https://github.com/aceberg/exercisediary#thanks)
+> Fork notice: This repository is a fork maintained by Oriol Samper. All credit for the original project and core architecture goes to Aceberg (original creator and maintainer). This fork introduces additional features and fixes with respect to mobile UX. Thank you, Aceberg, for the amazing groundwork and open-source spirit.
+
+- [Quick start](#quick-start)
+- [Binary](#binary)
+- [Config](#config)
+- [Options](#options)
+- [Local network only](#local-network-only)
+- [New in this fork](#new-in-this-fork)
+- [Roadmap](#roadmap)
+- [Thanks](#thanks)
 
 
 ![Screenshot](https://raw.githubusercontent.com/aceberg/ExerciseDiary/main/assets/Screenshot.png)
@@ -32,13 +35,13 @@ aceberg/exercisediary
 Or use [docker-compose.yml](docker-compose.yml)
 
 ## Binary
-PPA for amd64 .deb is [here](https://github.com/aceberg/ppa). For other binary options plese look at the [latest release](https://github.com/aceberg/ExerciseDiary/releases/latest).
+PPA for amd64 .deb is [here](https://github.com/aceberg/ppa). For other binary options please look at the [latest release](https://github.com/aceberg/ExerciseDiary/releases/latest).
 
 
 ## Config
 
 
-Configuration can be done through config file, GUI or environment variables. Variable names is `config.yaml` file are the same, but in lowcase.
+Configuration can be done through config file, GUI or environment variables. Variable names in the `config.yaml` file are the same, but in lowercase.
 
 | Variable  | Description | Default |
 | --------  | ----------- | ------- |
@@ -48,7 +51,7 @@ Configuration can be done through config file, GUI or environment variables. Var
 | AUTH_PASSWORD | Encrypted password (bcrypt). [How to encrypt password with bcrypt?](docs/BCRYPT.md) | "" |
 | HOST | Listen address | 0.0.0.0 |
 | PORT   | Port for web GUI | 8851 |
-| THEME | Any theme name from https://bootswatch.com in lowcase or [additional](https://github.com/aceberg/aceberg-bootswatch-fork) (emerald, grass, grayscale, ocean, sand, wood)| grass |
+| THEME | Any theme name from https://bootswatch.com in lowercase or [additional](https://github.com/aceberg/aceberg-bootswatch-fork) (emerald, grass, grayscale, ocean, sand, wood)| grass |
 | COLOR | Background color: light or dark | light |
 | HEATCOLOR | HeatMap color | #03a70c |
 | PAGESTEP | Items on one page | 10 |
@@ -62,7 +65,7 @@ Configuration can be done through config file, GUI or environment variables. Var
 | -n | Path to local JS and Themes ([node-bootstrap](https://github.com/aceberg/my-dockerfiles/tree/main/node-bootstrap)) | "" | 
 
 ## Local network only
-By default, this app pulls themes, icons and fonts from the internet. But, in some cases, it may be useful to have an independent from global network setup. I created a separate [image](https://github.com/aceberg/my-dockerfiles/tree/main/node-bootstrap) with all necessary modules and fonts.    
+By default, this app pulls themes, icons and fonts from the internet. But, in some cases, it may be useful to have an independent from global network setup. A separate [image](https://github.com/aceberg/my-dockerfiles/tree/main/node-bootstrap) contains all necessary modules and fonts.    
 ```sh
 docker run --name node-bootstrap       \
     -v ~/.dockerdata/icons:/app/icons  \ # For local images
@@ -77,11 +80,21 @@ docker run --name exdiary \
 ```
 Or use [docker-compose](docker-compose-local.yml)
 
+## New in this fork
+
+- Series field for exercise sets
+  - New input to record the number of series per set (stored in DB and displayed in the forms/tables).
+- Rate field with 4-level selector
+  - Levels: Failure (✗), Challenging (○), Good (✓), Easy (✓✓).
+  - Mobile-friendly popup with improved positioning: appears near the touch/click point, with overflow protection on small screens.
+- Various mobile UX improvements around the rate selector interaction.
+
 ## Roadmap
 Moved to [docs/ROADMAP.md](docs/ROADMAP.md)
 
 ## Thanks
-- All go packages listed in [dependencies](https://github.com/aceberg/exercisediary/network/dependencies)
+- Original author and project by Aceberg — thank you for the foundation and continued inspiration.
+- All Go packages listed in [dependencies](https://github.com/aceberg/exercisediary/network/dependencies)
 - [Bootstrap](https://getbootstrap.com/)
 - Themes: [Free themes for Bootstrap](https://bootswatch.com)
 - [Chart.js](https://github.com/chartjs/Chart.js) and [chartjs-chart-matrix](https://github.com/kurkle/chartjs-chart-matrix)

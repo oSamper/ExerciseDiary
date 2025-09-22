@@ -32,6 +32,7 @@ func Gui(dirPath, nodePath string) {
 
 	db.Create(appConfig.DBPath)
 	db.MigrateSeries(appConfig.DBPath)
+	db.MigrateRate(appConfig.DBPath)
 
 	address := appConfig.Host + ":" + appConfig.Port
 

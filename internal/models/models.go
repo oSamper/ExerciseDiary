@@ -34,6 +34,7 @@ type Exercise struct {
 	Weight decimal.Decimal `db:"WEIGHT"`
 	Reps   int             `db:"REPS"`
 	Series int             `db:"SERIES"`
+	Rate   int             `db:"RATE"`
 }
 
 // Set - one set
@@ -45,6 +46,7 @@ type Set struct {
 	Weight decimal.Decimal `db:"WEIGHT"`
 	Reps   int             `db:"REPS"`
 	Series int             `db:"SERIES"`
+	Rate   int             `db:"RATE"`
 }
 
 // AllExData - all sets and exercises

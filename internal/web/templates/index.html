@@ -2,6 +2,7 @@
 </head>
 <script src="/fs/public/js/heatmap.js"></script>
 <script src="/fs/public/js/index.js"></script>
+<script src="/fs/public/js/rate.js"></script>
 <script src="/fs/public/js/weight-chart.js"></script>
 <link rel="stylesheet" type="text/css" href="/fs/public/css/index.css" />
 <body>
@@ -119,8 +120,8 @@
   </div>
 </div>
 <!-- End Modal -->
-                            <button class="btn exercise-button" onclick='addExercise("{{ .Name }}", "{{ .Weight }}", "{{ .Reps }}", "{{ .Series }}")' title="Weight: {{ .Weight }}; Reps: {{ .Reps }}; Series: {{ .Series }};">{{ .Name }}</button>
-                            <button class="btn add-exercise-button" onclick='addExercise("{{ .Name }}", "{{ .Weight }}", "{{ .Reps }}", "{{ .Series }}")' title="Add">
+                            <button class="btn exercise-button" onclick='addExercise("{{ .Name }}", "{{ .Weight }}", "{{ .Reps }}", "{{ .Series }}", "{{ .Rate }}")' title="Weight: {{ .Weight }}; Reps: {{ .Reps }}; Series: {{ .Series }}; Rate: {{ .Rate }};">{{ .Name }}</button>
+                            <button class="btn add-exercise-button" onclick='addExercise("{{ .Name }}", "{{ .Weight }}", "{{ .Reps }}", "{{ .Series }}", "{{ .Rate }}")' title="Add">
                                 <i class="bi bi-arrow-right-square"></i>
                             </button>
                         </div>
@@ -162,10 +163,11 @@
                   <div class="table-responsive">
                     <table class="table table-borderless">
                       <thead>
-                          <th class="col-4">Name</th>
+                          <th class="col-3">Name</th>
                           <th class="col-2">Weight</th>
                           <th class="col-2">Reps</th>
                           <th class="col-2">Series</th>
+                          <th class="col-1">Rate</th>
                           <th class="col-2"></th>
                       </thead>
                       <tbody id="todayEx"></tbody>

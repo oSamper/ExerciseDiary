@@ -24,3 +24,82 @@
         overflow-x: scroll;
     }
 }
+
+/* Rate Icons Styles */
+.rate-icon {
+    cursor: pointer;
+    font-size: 18px;
+    padding: 4px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    user-select: none;
+    display: inline-block;
+    min-width: 24px;
+    text-align: center;
+}
+
+.rate-icon:hover {
+    transform: scale(1.1);
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.rate-icon.rate-1 {
+    color: #dc3545; /* Red for Fallo */
+}
+
+.rate-icon.rate-2 {
+    color: #ffc107; /* Yellow for Justo */
+}
+
+.rate-icon.rate-3 {
+    color: #28a745; /* Green for OK */
+}
+
+.rate-icon.rate-4 {
+    color: #28a745; /* Green for Sobrado */
+}
+
+/* Rate Drag Selector */
+.rate-selector {
+    position: absolute;
+    background: white;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 8px;
+    display: none;
+    z-index: 1000;
+    min-width: 120px;
+}
+
+.rate-selector.active {
+    display: block;
+}
+
+.rate-option {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    margin: 2px 0;
+}
+
+.rate-option:hover {
+    background-color: #f8f9fa;
+}
+
+.rate-option.selected {
+    background-color: #e3f2fd;
+}
+
+.rate-option-icon {
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+.rate-option-text {
+    font-size: 14px;
+    color: #333;
+}
