@@ -28,7 +28,7 @@ function addExercise(name, weight, reps, series, rate) {
     </td><td>
         <input name="series" type="number" min="1" class="form-control" value="${series}">
     </td><td>
-        <div class="rate-container" onclick="handleRateClick(event, this)">
+        <div class="rate-container" onmousedown="handleRateMouseDown(event, this)">
             <span class="rate-icon-display rate-icon ${rateConfig[rate].class}">${rateConfig[rate].icon}</span>
             <input name="rate" type="hidden" value="${rate}">
         </div>
