@@ -1,14 +1,19 @@
-.exercise-button, .add-exercise-button, .del-set-button {
+.exercise-button,
+.add-exercise-button,
+.del-set-button {
     height: 100%;
     background-color: #00000000;
     color: var(--bs-primary);
     text-align: center;
 }
-.exercise-button:hover, .add-exercise-button:hover, .del-set-button:hover {
+
+.exercise-button:hover,
+.add-exercise-button:hover,
+.del-set-button:hover {
     background-color: #0000001a;
 }
 
-.exercise-button {    
+.exercise-button {
     width: 70%;
     text-align: left;
     color: var(--bs-body-color);
@@ -25,6 +30,10 @@
     }
 }
 
+.rate-container {
+    text-align: center;
+}
+
 /* Rate Icons Styles */
 .rate-icon {
     cursor: pointer;
@@ -34,7 +43,7 @@
     transition: all 0.2s ease;
     user-select: none;
     display: inline-block;
-    min-width: 24px;
+    min-width: 26px;
     text-align: center;
 }
 
@@ -44,19 +53,23 @@
 }
 
 .rate-icon.rate-1 {
-    color: #dc3545; /* Red for Fallo */
+    color: #dc3545;
+    /* Red for Fallo */
 }
 
 .rate-icon.rate-2 {
-    color: #ffc107; /* Yellow for Justo */
+    color: #ffc107;
+    /* Yellow for Justo */
 }
 
 .rate-icon.rate-3 {
-    color: #28a745; /* Green for OK */
+    color: #28a745;
+    /* Green for OK */
 }
 
 .rate-icon.rate-4 {
-    color: #28a745; /* Green for Sobrado */
+    color: #28a745;
+    /* Green for Sobrado */
 }
 
 /* Rate Drag Selector */
@@ -66,7 +79,7 @@
     border: 2px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    padding: 8px;
+    padding: 6px;
     display: none;
     z-index: 1000;
     min-width: 120px;
@@ -96,10 +109,42 @@
 
 .rate-option-icon {
     margin-right: 8px;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .rate-option-text {
-    font-size: 14px;
+    font-size: 12px;
     color: #333;
+}
+
+/* Compact form inputs */
+#todayEx .form-control {
+    padding: 0.05rem 0.1rem;
+    font-size: 0.9rem;
+    line-height: 1.0;
+}
+
+#todayEx input[type="text"],
+#todayEx input[type="number"] {
+    height: auto;
+    min-height: 25px;
+}
+
+#mWeight th {
+    font-size: 0.3rem;
+}
+
+#todayEx td {
+    padding: 0.05rem 0.05rem;
+    font-size: 0.75rem;
+    vertical-align: middle;
+}
+
+#todayEx tr {
+    max-height: 22px;
+}
+
+#todayEx table {
+    border-spacing: 0;
+    margin-bottom: 0;
 }
